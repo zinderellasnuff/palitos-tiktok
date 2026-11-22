@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Palitos: Azul vs Rojo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #0b1220; --panel: #131c2e; --line: #26324a; --text: #e8eefc; --gold: #ffcc33; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--ink); color: var(--text); font-family: system-ui, sans-serif; }
+  #app { display: flex; justify-content: center; gap: 16px; height: 100vh; }
+  #hoja { height: 100vh; aspect-ratio: 9 / 16; max-width: 100vw; display: block; background: #fbf7ea; }
+  #panel { width: 270px; padding: 16px; overflow: auto; background: var(--panel); border-left: 1px solid var(--line); font-size: 14px; }
+  #panel h2 { margin: 0 0 4px; font-size: 18px; }
+  #panel h3 { margin: 16px 0 6px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: #8fa3c8; }
+  #panel p { margin: 0 0 8px; color: #8fa3c8; font-size: 12px; line-height: 1.4; }
+  #panel label { display: block; font-size: 12px; color: #8fa3c8; margin: 6px 0 2px; }
+  #panel input[type=text] { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--ink); color: var(--text); font: inherit; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  #panel button { padding: 9px 6px; border: 0; border-radius: 8px; background: #2a3a5c; color: var(--text); font: inherit; font-weight: 600; cursor: pointer; min-height: 40px; }
+  #panel button:hover { background: #36497a; }
+  #panel button:focus-visible, #panel input:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  #panel button.azul { background: #1f4fa8; } #panel button.rojo { background: #a82a2a; } #panel button.gift { background: #4a2f6b; }
+  #panel .check { display: flex; align-items: center; gap: 8px; color: var(--text); font-size: 14px; }
+  kbd { background: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; font-size: 11px; }
+  body.clean #panel { display: none; }
+  body.clean { background: transparent; }
+  @media (max-width: 800px) { #app { flex-direction: column; height: auto; gap: 0; } #hoja { width: 100vw; height: auto; } #panel { width: 100%; border-left: 0; border-top: 1px solid var(--line); } }
+</style>
+</head>
+<body>
+<div id="app">
+  <canvas id="hoja" width="720" height="1280"></canvas>
+  <aside id="panel">
+    <h2>Simulador</h2>
+    <p>Eventos falsos para probar sin TikTok. Con <kbd>?clean</kbd> en la URL se oculta este panel (OBS / LIVE Studio).</p>
+    <label for="sim-user">Usuario</label>
+    <input id="sim-user" type="text" value="Aron" autocomplete="off">
+    <div class="row">
+      <button id="sim-azul" class="azul">Comentar "azul"</button>
+      <button id="sim-rojo" class="rojo">Comentar "rojo"</button>
+      <button id="sim-like">Like</button>
+      <button id="sim-follow">Seguir</button>
+      <button id="sim-share">Compartir</button>
+    </div>
+    <h3>Regalos (diamantes)</h3>
+    <div class="row">
+      <button class="gift" data-gift="1">1 · Tirachinas</button>
+      <button class="gift" data-gift="5">5 · Compás</button>
+      <button class="gift" data-gift="10">10 · Mago</button>
+      <button class="gift" data-gift="20">20 · Plumón</button>
+      <button class="gift" data-gift="99">99 · Borrador</button>
+      <button class="gift" data-gift="299">299 · Hoja nueva</button>
+    </div>
+    <h3>Live y sonido</h3>
+    <label class="check"><input id="sim-sound" type="checkbox" checked> Sonido</label>
+    <p id="live-status">Para el live: <kbd>npm start -- usuario</kbd> y abre <kbd>?live&amp;clean</kbd></p>
+    <h3>Pruebas</h3>
+    <label class="check"><input id="sim-bots" type="checkbox" checked> Bots automáticos</label>
+    <div class="row">
+      <button id="sim-reset">Nueva ronda</button>
+      <button id="sim-clear">Borrar ranking</button>
+    </div>
+  </aside>
+</div>
+<script type="module" src="game.js"></script>
+</body>
+</html>

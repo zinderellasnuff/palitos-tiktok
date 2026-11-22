@@ -1,0 +1,13 @@
+{
+  "name": "palitos",
+  "version": "0.1.0",
+  "description": "Palitos: Azul vs Rojo. Juego interactivo para lives de TikTok (Canvas 2D + tiktok-live-connector)",
+  "scripts": {
+    "test": "node --test",
+    "start": "node server.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "tiktok-live-connector": "^2.5.0"
+  }
+}
